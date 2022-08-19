@@ -20,7 +20,7 @@ const validationSchema = Yup.object().shape({
 
 export default function LoginScreen({ navigation }) {
 
-  const baseURL = "https://app.onehive.be";
+  // const baseURL = "https://app.onehive.be";
 
   const [loginFailed, setLoginFailed] = useState(false);
   let [logged, setLogged] = useState(false);
@@ -30,53 +30,53 @@ export default function LoginScreen({ navigation }) {
      if(user.length === 1){
       setLogged(false);
 
-      // navigation.navigate('Commands');
+      navigation.navigate('Commands');
      }
     else
     setLogged(true)
   };
 
-  const accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjUzYzg0MTg1YjI2NzQ5MTAwYzU3NzI4ZDA1M2M0M2Y2ODRlZTZhMjY2NzU3NTU0MzNmN2EwODRkMDNkMDhiNWRhZGZiOTBhYWZiYjFkYmJiIn0.eyJhdWQiOiI5OSIsImp0aSI6IjUzYzg0MTg1YjI2NzQ5MTAwYzU3NzI4ZDA1M2M0M2Y2ODRlZTZhMjY2NzU3NTU0MzNmN2EwODRkMDNkMDhiNWRhZGZiOTBhYWZiYjFkYmJiIiwiaWF0IjoxNjU0NzE2NjY1LCJuYmYiOjE2NTQ3MTY2NjUsImV4cCI6MTY4NjI1MjY2NSwic3ViIjoiIiwic2NvcGVzIjpbXX0.YLV5wDBOOC06yQpf6URiU9yS0dZmlRjAxcKrXlxZKctxgDGNSWjgbmRZHj4zTP4YaT77679ufNJDtvunk3DQQ8P1tq-Iye9HM1pboRTwI6PZ2aRaRWiCi9RWbiB5Nnp2tMm_jbrrHQbHjXbaIjuCYpgtYUxWEaIFmgH0uZ0EDk46a9nS8aKB00w-h3vVAFj7_XRgIzyV-5zqLV1fxCNxdehmbwDGYjQyn47Nv4iChgIGokMB4JC4lw3EhIbHOTj-BFwgBoZ4l5LPXdGaWccXZyUf55Ao1W5X-2BToP9sPmOXGzjbBV-g2Un_UrCFler_pCs8d4Em6ERqFqo6o-6hPAENzEAlOxlkcE1wBtaLaZUDtMSyKvl-xJfjcvTuO6zPYHq1gq0I9bNAlK2NhKdWc1lesO8qhJElX8Vahb6kBocAaJpctbEcvd8ox2gSAFUmdSgxJSs3SSodVrRqDCOadTDdlRuS54yNGQBsfZO7wTKsuxeeHmdMtN99IxVOSurdszAd65PatzxUQOc06HEuhfdVwtMVf0r7wGx4ddwmGG5ZcVYmcU5ReUmcvJ-XKJF0DAHlEy8uLGKrnnwCNyyRlm1vcxJHQxkHi0_J5R77FScvcBenpEErSWq41LZgaslZjZrMylurTtYEx7xwu9R7kDuuz3bDCt6FuZnCTV6AgKo";
+  // const accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjUzYzg0MTg1YjI2NzQ5MTAwYzU3NzI4ZDA1M2M0M2Y2ODRlZTZhMjY2NzU3NTU0MzNmN2EwODRkMDNkMDhiNWRhZGZiOTBhYWZiYjFkYmJiIn0.eyJhdWQiOiI5OSIsImp0aSI6IjUzYzg0MTg1YjI2NzQ5MTAwYzU3NzI4ZDA1M2M0M2Y2ODRlZTZhMjY2NzU3NTU0MzNmN2EwODRkMDNkMDhiNWRhZGZiOTBhYWZiYjFkYmJiIiwiaWF0IjoxNjU0NzE2NjY1LCJuYmYiOjE2NTQ3MTY2NjUsImV4cCI6MTY4NjI1MjY2NSwic3ViIjoiIiwic2NvcGVzIjpbXX0.YLV5wDBOOC06yQpf6URiU9yS0dZmlRjAxcKrXlxZKctxgDGNSWjgbmRZHj4zTP4YaT77679ufNJDtvunk3DQQ8P1tq-Iye9HM1pboRTwI6PZ2aRaRWiCi9RWbiB5Nnp2tMm_jbrrHQbHjXbaIjuCYpgtYUxWEaIFmgH0uZ0EDk46a9nS8aKB00w-h3vVAFj7_XRgIzyV-5zqLV1fxCNxdehmbwDGYjQyn47Nv4iChgIGokMB4JC4lw3EhIbHOTj-BFwgBoZ4l5LPXdGaWccXZyUf55Ao1W5X-2BToP9sPmOXGzjbBV-g2Un_UrCFler_pCs8d4Em6ERqFqo6o-6hPAENzEAlOxlkcE1wBtaLaZUDtMSyKvl-xJfjcvTuO6zPYHq1gq0I9bNAlK2NhKdWc1lesO8qhJElX8Vahb6kBocAaJpctbEcvd8ox2gSAFUmdSgxJSs3SSodVrRqDCOadTDdlRuS54yNGQBsfZO7wTKsuxeeHmdMtN99IxVOSurdszAd65PatzxUQOc06HEuhfdVwtMVf0r7wGx4ddwmGG5ZcVYmcU5ReUmcvJ-XKJF0DAHlEy8uLGKrnnwCNyyRlm1vcxJHQxkHi0_J5R77FScvcBenpEErSWq41LZgaslZjZrMylurTtYEx7xwu9R7kDuuz3bDCt6FuZnCTV6AgKo";
 
-  const authAxios = axios.create({
-    baseURL: baseURL,
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin' : '*',
-      'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-    },
-    withCredentials: true
-  });
+  // const authAxios = axios.create({
+  //   baseURL: baseURL,
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     'Access-Control-Allow-Origin' : '*',
+  //     'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+  //   },
+  //   withCredentials: true
+  // });
 
-  authAxios.interceptors.request.use(
-    config => {
+  // authAxios.interceptors.request.use(
+  //   config => {
       
-      // config.data = {"grant_type":"client_credentials",
-      // "client_id":"50e0d78bf768b9322d6d534dcc872892",
-      // "client_secret":"x5fkFxBWp0VWFruJeehUcbKqTJR1KdJB3ub2tzX9",
-      // "scope": "*" }
+  //     // config.data = {"grant_type":"client_credentials",
+  //     // "client_id":"50e0d78bf768b9322d6d534dcc872892",
+  //     // "client_secret":"x5fkFxBWp0VWFruJeehUcbKqTJR1KdJB3ub2tzX9",
+  //     // "scope": "*" }
 
-      if (!config.headers.Authorization) {
-        config.headers.Authorization = `Bearer ${accessToken}`;
-      }
+  //     if (!config.headers.Authorization) {
+  //       config.headers.Authorization = `Bearer ${accessToken}`;
+  //     }
 
-      return config;
-    },
-    error => {
-      return Promise.reject(error);
-    },
-  );
+  //     return config;
+  //   },
+  //   error => {
+  //     return Promise.reject(error);
+  //   },
+  // );
 
-  authAxios({
-    method: 'get',
-    url: '/api/data/493533d0-cf81-11eb-9437-cf51ee771a09/',
+  // authAxios({
+  //   method: 'get',
+  //   url: '/api/data/493533d0-cf81-11eb-9437-cf51ee771a09/',
     // data: {
     //   "grant_type":"client_credentials",
     //   "client_id":"50e0d78bf768b9322d6d534dcc872892",
     //   "client_secret":"x5fkFxBWp0VWFruJeehUcbKqTJR1KdJB3ub2tzX9",
     //   "scope": "*"
     // }
-  });
+  // });
 
   // axios.get(`${baseURL}/api/data/493533d0-cf81-11eb-9437-cf51ee771a09/`
   // , { headers: {

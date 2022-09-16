@@ -3,6 +3,7 @@ import { Text, View, FlatList, SafeAreaView, StatusBar, StyleSheet } from 'react
 import { ListItem } from "@react-native-material/core";
 import * as MailComposer from 'expo-mail-composer';
 import { FontAwesome } from '@expo/vector-icons';
+import XLSX from 'xlsx';
 
 import * as FileSystem from 'expo-file-system';
 
@@ -15,8 +16,9 @@ export default function DetailScreen({route, navigation}) {
 
   const obj = route.params;
   const body = JSON.stringify(obj.values).replace(/['"]+/g, '').slice(1, -1).replace(/[,]/g, '\n');
-  let products = body+'\n'+
-               JSON.stringify(obj.excel).replace(/['"]+/g, '').slice(1, -1).replace(/[{,]/g, '\n').replace(/[}]/g, '');
+  let products = body;
+              // +'\n'+
+              //  JSON.stringify(obj.excel).replace(/['"]+/g, '').slice(1, -1).replace(/[{,]/g, '\n').replace(/[}]/g, '');
                
   let prod = JSON.stringify(obj.excel).replace(/['"]+/g, '').slice(1, -1).replace(/[{,]/g, '\n').replace(/[}]/g, '');
   
@@ -24,17 +26,20 @@ export default function DetailScreen({route, navigation}) {
     {"Customer Name": Object.values(obj.values)[0],
     "Customer Address": Object.values(obj.values)[1],
     "Customer email": Object.values(obj.values)[2],
-    "Tel": Object.values(obj.values)[3],
+    "Customer Tel": Object.values(obj.values)[3],
     "Commercial name": Object.values(obj.values)[4],
     }
   ];
+
+  // Object.keys(obj.excel).map(key => ({[key]: result.push(obj.excel[key])}));
 
   var ws = XLSX.utils.json_to_sheet(result, 
                   {header:["Customer Name",
                            "Customer Address",
                            "Customer email",
-                           "Tel",
-                           "Commercial name"]});
+                           "Customer Tel",
+                           "Commercial name"
+                          ]});
 
   XLSX.utils.sheet_add_json(ws,
     obj.excel
@@ -49,7 +54,7 @@ export default function DetailScreen({route, navigation}) {
   });
   
   const uri = FileSystem.cacheDirectory + 'commercial.xlsx';
-  console.log(`Writing to ${JSON.stringify(uri)} `);
+
   FileSystem.writeAsStringAsync(uri, wbout, {
     encoding: FileSystem.EncodingType.Base64
   });
@@ -88,9 +93,9 @@ export default function DetailScreen({route, navigation}) {
 
       <BackButton goBack={navigation.goBack} />
 
-      <View style={Styles.textbox}>
+      {/* <View style={Styles.textbox}>
        <Text style={Styles.text}>{prod}</Text>
-      </View>
+      </View> */}
       <FlatList
         data={Object.values(obj.values)}
         keyExtractor={(item, index) => index.toString()}

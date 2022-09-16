@@ -7,6 +7,8 @@ import { FontAwesome } from '@expo/vector-icons';
 import TextInput from '../components/TextInput';
 import Button from '../components/Button';
 
+import Products from '../assets/json/Products.json';
+
 export default function ScanScreen({route, navigation}) {
   
   const values = route.params;
@@ -19,6 +21,9 @@ export default function ScanScreen({route, navigation}) {
   const [data, setData] = useState();
 
   const [excel, setexcel] = useState([]);
+  const [exist, setExist] = useState(false);
+  const [stock, setStock] = useState(false);
+  const [product, steProduct] = useState([]);
 
   useEffect(() => {
     (async () => {
@@ -28,10 +33,20 @@ export default function ScanScreen({route, navigation}) {
   }, []);
 
   const handleBarCodeScanned = ({ data }) => {
+
+    let prod = Products.filter(x => {return x.Barcode === parseInt(data)});
+
     setScanned(true);
     setModalVisible(true);
 
-    setData(data);
+    if(prod.length !== 0){
+      steProduct(prod);
+      setExist(true);
+      
+      setData(data);
+    }else{
+      setExist(false);
+    }
   };
 
   if (hasPermission === null) {
@@ -43,8 +58,15 @@ export default function ScanScreen({route, navigation}) {
 
   const handleData = () => {
 
-    excel.push({ "code": data, "quantity": text });
-    setexcel(excel);
+    if(product.length !== 0){
+      // if(product[0].Stock >= parseInt(text)){
+        // setStock(false);
+        setexcel(excel);
+        excel.push({ "Product Barcode": product[0].Barcode, "Product Name": product[0].Name, "Product Reference": product[0].Reference, "Product Quantity": text });
+      // }else{
+      //   setStock(true);
+      // }
+    }
 
     onChangeText('');
   }
@@ -54,7 +76,6 @@ export default function ScanScreen({route, navigation}) {
     setData(data);
     handleData();
     navigation.navigate("Details", {excel, values} )
-    console.log(excel);
   }
 
   return (
@@ -74,7 +95,8 @@ export default function ScanScreen({route, navigation}) {
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
               {/* <Text style={styles.modalText}>Bar code with type ${type}</Text> */}
-              <Text style={styles.modalText}>ID {data}</Text>
+              {!exist && <Text style={styles.modalText}>This product not found!</Text>}
+              {/* {stock && <Text style={styles.modalText}>Amount less then {text}</Text>} */}
               <TextInput
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -83,16 +105,17 @@ export default function ScanScreen({route, navigation}) {
                 keyboardType="numeric"
                 onChangeText={onChangeText}
                 value={text}
+                editable={exist}
               />
               <HStack m={4} spacing={6}>
                 <View style={styles.row}>
                   <Button 
                       title="Scan" 
                       trailing={props => <FontAwesome name="barcode" size={24} color="white" />} 
-                      disable={text !== ''} 
+                      disable={text !== '' || !exist} 
                       onPress={() => {
-                    handleData();
-                    setScanned(false)}
+                      handleData();
+                      setScanned(false)}
                     } />
                   <Button title={'Pass command'} disable={text !== ''}  onPress={details} />
                 </View>
@@ -169,6 +192,7 @@ const styles = StyleSheet.create({
   },
   modalText: {
     marginBottom: 15,
-    textAlign: "center"
+    textAlign: "center",
+    color: 'red'
   }
 })

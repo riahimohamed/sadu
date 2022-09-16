@@ -18,7 +18,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.company.yourapp"
+      "bundleIdentifier": "com.sadu.commerce"
     },
     "android": {
       "package": "com.company.yourapp",
@@ -29,6 +29,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "6abe335f-57bc-4337-9daf-fb5fbbde8ed8"
+      }
     }
   }
 }

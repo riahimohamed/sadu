@@ -13,10 +13,10 @@ import BackButton from '../components/BackButton';
 
 const validationSchema = Yup.object().shape({
   nameClient: Yup.string().required().label("Nom Client"),
-  addressClient: Yup.string().required().label("Adresse Client"),
-  email: Yup.string().required().email().label("Email"), 
-  tel: Yup.number().required().label("Tel"),
-  nameComercial: Yup.string().required().label("Nom Commercial"),
+  // addressClient: Yup.string().required().label("Adresse Client"),
+  // email: Yup.string().required().email().label("Email"), 
+  // tel: Yup.number().required().label("Tel"),
+  // nameComercial: Yup.string().required().label("Nom Commercial"),
 });
 
 export default function CommandScreen({ navigation }) {
@@ -35,10 +35,11 @@ export default function CommandScreen({ navigation }) {
       <Text style={styles.title}>Passer une Commande</Text>
       <Form
         initialValues={{ nameClient: "", 
-                         addressClient: "", 
-                         email: "", 
-                         tel: "", 
-                         nameComercial: "" }}
+                        //  addressClient: "", 
+                        //  email: "", 
+                        //  tel: "", 
+                        //  nameComercial: "" 
+                        }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
         >
@@ -53,7 +54,7 @@ export default function CommandScreen({ navigation }) {
             name="nameClient"
             label="Customer Name"
           />
-          <FormField
+          {/* <FormField
             autoCapitalize="none"
             autoCorrect={false}
             name="addressClient"
@@ -79,7 +80,7 @@ export default function CommandScreen({ navigation }) {
             autoCorrect={false}
             name="nameComercial"
             label="Commercial  name"
-          />
+          /> */}
           <SubmitButton style={styles.button} title="To order" />
         </Stack>
       </Form>

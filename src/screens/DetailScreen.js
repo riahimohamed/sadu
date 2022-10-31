@@ -24,10 +24,10 @@ export default function DetailScreen({route, navigation}) {
   
   let result = [
     {"Customer Name": Object.values(obj.values)[0],
-    "Customer Address": Object.values(obj.values)[1],
-    "Customer email": Object.values(obj.values)[2],
-    "Customer Tel": Object.values(obj.values)[3],
-    "Commercial name": Object.values(obj.values)[4],
+    // "Customer Address": Object.values(obj.values)[1],
+    // "Customer email": Object.values(obj.values)[2],
+    // "Customer Tel": Object.values(obj.values)[3],
+    // "Commercial name": Object.values(obj.values)[4],
     }
   ];
 
@@ -35,10 +35,10 @@ export default function DetailScreen({route, navigation}) {
 
   var ws = XLSX.utils.json_to_sheet(result, 
                   {header:["Customer Name",
-                           "Customer Address",
-                           "Customer email",
-                           "Customer Tel",
-                           "Commercial name"
+                          //  "Customer Address",
+                          //  "Customer email",
+                          //  "Customer Tel",
+                          //  "Commercial name"
                           ]});
 
   XLSX.utils.sheet_add_json(ws,
@@ -61,10 +61,10 @@ export default function DetailScreen({route, navigation}) {
 
   const list = [
     "Customer name",
-    "Customer Address",
-    "Customer email",
-    "Customer tel",
-    "Commercial name",
+    // "Customer Address",
+    // "Customer email",
+    // "Customer tel",
+    // "Commercial name",
   ];
 
   const renderItem = ({ item, index }) => (
